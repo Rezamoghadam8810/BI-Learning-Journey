@@ -1,0 +1,2733 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/28/2026 3:59:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="REZA"
+  DTS:CreatorName="REZA\Reza"
+  DTS:DTSID="{716B14FC-EF7A-4ABA-8EBD-B60FEB7F73E0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{C95C476E-3E4F-43F9-ACB4-82F20E3AB9B4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[REZA.BI_1405_01_1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{60CE7271-6745-4B52-B4C4-C12E7729AB54}"
+      DTS:ObjectName="REZA.BI_1405_01_1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=REZA;Initial Catalog=BI_1405_01_1;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{60CE7271-6745-4B52-B4C4-C12E7729AB54}REZA.BI_1405_01_1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Orders XML into SQL Server Practis"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6297C790-0FD1-44D1-AEA6-13AFE2C6C400}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Orders XML into SQL Server Practis"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add YearOfOrder Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Inputs[Derived Column Input].Columns[OrderDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OrderDate"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[OrderDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Output].Columns[YearOfOrder]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Output].Columns[YearOfOrder]"
+                      name="YearOfOrder"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I2)[YEAR](#{Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[OrderDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I2)YEAR(OrderDate)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Practis\Aggregate"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Practis\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Aggregate.Inputs[Aggregate Input 1].Columns[ShipCountryRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ShipCountryRegion"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]" />
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Aggregate.Inputs[Aggregate Input 1].Columns[YearOfOrder]"
+                      cachedDataType="i2"
+                      cachedName="YearOfOrder"
+                      lineageId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Output].Columns[YearOfOrder]" />
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Aggregate.Inputs[Aggregate Input 1].Columns[Freight]"
+                      cachedDataType="decimal"
+                      cachedName="Freight"
+                      cachedScale="10"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[Freight]" />
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Aggregate.Inputs[Aggregate Input 1].Columns[OrderID]"
+                      cachedDataType="ui2"
+                      cachedName="OrderID"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[OrderID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[ShipCountryRegion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[ShipCountryRegion]"
+                      name="ShipCountryRegion">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[YearOfOrder]"
+                      dataType="i2"
+                      lineageId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[YearOfOrder]"
+                      name="YearOfOrder">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Output].Columns[YearOfOrder]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[AVG_Freight]"
+                      dataType="decimal"
+                      lineageId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[AVG_Freight]"
+                      name="AVG_Freight"
+                      scale="10">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[Freight]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">5</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[Count]"
+                      dataType="ui8"
+                      lineageId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[Count]"
+                      name="Count">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[OrderID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Practis\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Practis\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Conditional Split.Inputs[Conditional Split Input].Columns[Freight]"
+                      cachedDataType="decimal"
+                      cachedName="Freight"
+                      cachedScale="10"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[Freight]" />
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Conditional Split.Inputs[Conditional Split Input].Columns[ShipCountryRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ShipCountryRegion"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[WithshipCountryRegion]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="WithshipCountryRegion"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(ShipCountryRegion)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[WithOutshipCountryRegion]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="WithOutshipCountryRegion"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(ShipCountryRegion)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[withFreight]"
+                  description="Output 3 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="withFreight"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[Freight]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(Freight)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">2</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[withOutFreight]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="withOutFreight"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Practis\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Practis\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Multicast.Outputs[Multicast Output 2]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Practis\Multicast 1"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast 1">
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Practis\Multicast 1.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Multicast 1.Outputs[Multicast Output 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Orders XML into SQL Server Practis\Multicast 1.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Practis\Orders XML File"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Extracts data from an XML file. For example, extract catalog data from an XML file that represents catalogs and catalog items. Before using, specify the schema and generate an output for each XML element.;Microsoft Corporation;Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Extracts data from an XML file. For example, extract catalog data from an XML file that represents catalogs and catalog items. Before using, specify the schema and generate an output for each XML element."
+              name="Orders XML File"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.XmlSourceAdapter</property>
+                <property
+                  dataType="System.String"
+                  description="The XML data used by the XML source adapter."
+                  expressionType="Notify"
+                  name="XMLData">K:\bi-learning-journey\ssis\exercise-01-xml-freight-by-country\source\orders.xml</property>
+                <property
+                  dataType="System.String"
+                  description="The variable used by the XML source adapter to specify XML data."
+                  name="XMLDataVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Defines how the XML source adapter gets XML data."
+                  name="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The XML schema definition used by the XML source adapter."
+                  expressionType="Notify"
+                  name="XMLSchemaDefinition">K:\bi-learning-journey\ssis\exercise-01-xml-freight-by-country\source\orders.xsd</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Identifies whether or not to use inline schema."
+                  name="UseInlineSchema">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Defines how XML integer types are mapped."
+                  name="XMLIntegerMapping"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.XmlSourceAdapter+XMLIntegerMappingConverter">0</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders]"
+                  name="orders">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Identifies the rowset associated with the output."
+                      name="RowsetID">orders</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[OrderID]"
+                      dataType="ui2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[OrderID]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[OrderID]"
+                      name="OrderID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[CustomerID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[CustomerID]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[EmployeeID]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[OrderDate]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[OrderDate]"
+                      name="OrderDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[RequiredDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[RequiredDate]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[RequiredDate]"
+                      name="RequiredDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShippedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShippedDate]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShippedDate]"
+                      name="ShippedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipVia]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipVia]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipVia]"
+                      name="ShipVia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[Freight]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[Freight]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[Freight]"
+                      name="Freight"
+                      scale="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipName]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipName]"
+                      name="ShipName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipAddress]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipAddress]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipAddress]"
+                      name="ShipAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipCity]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCity]"
+                      name="ShipCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipPostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipPostalCode]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipPostalCode]"
+                      name="ShipPostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipCountryRegion]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]"
+                      name="ShipCountryRegion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCountryRegionRegion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipCountryRegionRegion]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipCountryRegionRegion]"
+                      name="ShipCountryRegionRegion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipRegion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipRegion]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].Columns[ShipRegion]"
+                      name="ShipRegion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[OrderID]"
+                      dataType="ui2"
+                      name="OrderID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.UInt16</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[CustomerID]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomerID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[EmployeeID]"
+                      dataType="ui1"
+                      name="EmployeeID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.Byte</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="OrderDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.DateTime</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[RequiredDate]"
+                      dataType="dbTimeStamp"
+                      name="RequiredDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.DateTime</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShippedDate]"
+                      dataType="dbTimeStamp"
+                      name="ShippedDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.DateTime</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipVia]"
+                      dataType="ui1"
+                      name="ShipVia">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.Byte</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[Freight]"
+                      dataType="decimal"
+                      name="Freight"
+                      scale="10">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.Decimal</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipName">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipAddress]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipAddress">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipCity]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipCity">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipPostalCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipPostalCode">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipCountryRegion]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipCountryRegion">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipCountryRegionRegion]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipCountryRegionRegion">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders].ExternalColumns[ShipRegion]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipRegion">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output]"
+                  isErrorOut="true"
+                  name="orders Error Output">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Identifies the rowset associated with the output."
+                      name="RowsetID">orders</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[OrderID]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[OrderID]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[OrderID]"
+                      name="OrderID" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[CustomerID]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[EmployeeID]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[OrderDate]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[OrderDate]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[OrderDate]"
+                      name="OrderDate" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[RequiredDate]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[RequiredDate]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[RequiredDate]"
+                      name="RequiredDate" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShippedDate]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShippedDate]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShippedDate]"
+                      name="ShippedDate" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipVia]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipVia]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipVia]"
+                      name="ShipVia" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[Freight]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[Freight]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[Freight]"
+                      name="Freight" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipName]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipName]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipName]"
+                      name="ShipName" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipAddress]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipAddress]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipAddress]"
+                      name="ShipAddress" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipCity]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCity]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipCity]"
+                      name="ShipCity" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipPostalCode]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipPostalCode]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipPostalCode]"
+                      name="ShipPostalCode" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipCountryRegion]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCountryRegion]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipCountryRegion]"
+                      name="ShipCountryRegion" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipCountryRegionRegion]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCountryRegionRegion]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipCountryRegionRegion]"
+                      name="ShipCountryRegionRegion" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipRegion]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipRegion]"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ShipRegion]"
+                      name="ShipRegion" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[OrderID]"
+                      dataType="nText"
+                      name="OrderID" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[CustomerID]"
+                      dataType="nText"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[EmployeeID]"
+                      dataType="nText"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[OrderDate]"
+                      dataType="nText"
+                      name="OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[RequiredDate]"
+                      dataType="nText"
+                      name="RequiredDate" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShippedDate]"
+                      dataType="nText"
+                      name="ShippedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipVia]"
+                      dataType="nText"
+                      name="ShipVia" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[Freight]"
+                      dataType="nText"
+                      name="Freight" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipName]"
+                      dataType="nText"
+                      name="ShipName" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipAddress]"
+                      dataType="nText"
+                      name="ShipAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCity]"
+                      dataType="nText"
+                      name="ShipCity" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipPostalCode]"
+                      dataType="nText"
+                      name="ShipPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCountryRegion]"
+                      dataType="nText"
+                      name="ShipCountryRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCountryRegionRegion]"
+                      dataType="nText"
+                      name="ShipCountryRegionRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipRegion]"
+                      dataType="nText"
+                      name="ShipRegion" />
+                  </externalMetadataColumns>
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Practis\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Practis\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Sort.Inputs[Sort Input].Columns[ShipCountryRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ShipCountryRegion"
+                      lineageId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[ShipCountryRegion]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Sort.Inputs[Sort Input].Columns[YearOfOrder]"
+                      cachedDataType="i2"
+                      cachedName="YearOfOrder"
+                      lineageId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[YearOfOrder]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Sort.Inputs[Sort Input].Columns[AVG_Freight]"
+                      cachedDataType="decimal"
+                      cachedName="AVG_Freight"
+                      cachedScale="10"
+                      lineageId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[AVG_Freight]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Sort.Inputs[Sort Input].Columns[Count]"
+                      cachedDataType="ui8"
+                      cachedName="Count"
+                      lineageId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[Count]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output].Columns[ShipCountryRegion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output].Columns[ShipCountryRegion]"
+                      name="ShipCountryRegion"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[ShipCountryRegion]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output].Columns[YearOfOrder]"
+                      dataType="i2"
+                      lineageId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output].Columns[YearOfOrder]"
+                      name="YearOfOrder"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[YearOfOrder]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output].Columns[AVG_Freight]"
+                      dataType="decimal"
+                      lineageId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output].Columns[AVG_Freight]"
+                      name="AVG_Freight"
+                      scale="10">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[AVG_Freight]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output].Columns[Count]"
+                      dataType="ui8"
+                      lineageId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output].Columns[Count]"
+                      name="Count">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1].Columns[Count]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Orders XML into SQL Server Practis.Paths[Aggregate Output 1]"
+              endId="Package\Orders XML into SQL Server Practis\Sort.Inputs[Sort Input]"
+              name="Aggregate Output 1"
+              startId="Package\Orders XML into SQL Server Practis\Aggregate.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\Orders XML into SQL Server Practis.Paths[Derived Column Output]"
+              endId="Package\Orders XML into SQL Server Practis\Aggregate.Inputs[Aggregate Input 1]"
+              name="Derived Column Output"
+              startId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Orders XML into SQL Server Practis.Paths[Multicast Output 1]"
+              endId="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column.Inputs[Derived Column Input]"
+              name="Multicast Output 1"
+              startId="Package\Orders XML into SQL Server Practis\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\Orders XML into SQL Server Practis.Paths[orders]"
+              endId="Package\Orders XML into SQL Server Practis\Conditional Split.Inputs[Conditional Split Input]"
+              name="orders"
+              startId="Package\Orders XML into SQL Server Practis\Orders XML File.Outputs[orders]" />
+            <path
+              refId="Package\Orders XML into SQL Server Practis.Paths[Sort Output]"
+              endId="Package\Orders XML into SQL Server Practis\Multicast 1.Inputs[Multicast Input 1]"
+              name="Sort Output"
+              startId="Package\Orders XML into SQL Server Practis\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Orders XML into SQL Server Practis.Paths[WithshipCountryRegion]"
+              endId="Package\Orders XML into SQL Server Practis\Multicast.Inputs[Multicast Input 1]"
+              name="WithshipCountryRegion"
+              startId="Package\Orders XML into SQL Server Practis\Conditional Split.Outputs[WithshipCountryRegion]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Orders XML into SQL Server Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4CA39B10-4E1C-40C3-9395-DB21BA8D1241}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Orders XML into SQL Server Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Orders XML into SQL Server Table\Aggregate"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Table\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Table\Aggregate.Inputs[Aggregate Input 1].Columns[ShipCountryRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ShipCountryRegion"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]" />
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Table\Aggregate.Inputs[Aggregate Input 1].Columns[OrderID]"
+                      cachedDataType="ui2"
+                      cachedName="OrderID"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[OrderID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1].Columns[ShipCountryRegion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1].Columns[ShipCountryRegion]"
+                      name="ShipCountryRegion">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1].Columns[CountOfOrders]"
+                      dataType="ui8"
+                      lineageId="Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1].Columns[CountOfOrders]"
+                      name="CountOfOrders">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[OrderID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Table\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Table\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Table\Conditional Split.Inputs[Conditional Split Input].Columns[ShipCountryRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ShipCountryRegion"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Table\Conditional Split.Outputs[WithShipCountryRegieon]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="WithShipCountryRegieon"
+                  synchronousInputId="Package\Orders XML into SQL Server Table\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(ShipCountryRegion)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Table\Conditional Split.Outputs[WithoutShipCountryRegieon]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="WithoutShipCountryRegieon"
+                  synchronousInputId="Package\Orders XML into SQL Server Table\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Table\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Orders XML into SQL Server Table\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Table\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Table\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Table\Orders"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Orders"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Orders]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Orders XML into SQL Server Table\Orders.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[REZA.BI_1405_01_1]"
+                  connectionManagerRefId="Package.ConnectionManagers[REZA.BI_1405_01_1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Table\Orders.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders.Inputs[OLE DB Destination Input].Columns[ShipCountryRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ShipCountryRegion"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders.Inputs[OLE DB Destination Input].ExternalColumns[ShipCountryRegion]"
+                      lineageId="Package\Orders XML into SQL Server Table\Sort.Outputs[Sort Output].Columns[ShipCountryRegion]" />
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders.Inputs[OLE DB Destination Input].Columns[CountOfOrders]"
+                      cachedDataType="ui8"
+                      cachedName="CountOfOrders"
+                      cachedSortKeyPosition="-1"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders.Inputs[OLE DB Destination Input].ExternalColumns[CountOfOrders]"
+                      lineageId="Package\Orders XML into SQL Server Table\Sort.Outputs[Sort Output].Columns[CountOfOrders]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders.Inputs[OLE DB Destination Input].ExternalColumns[ShipCountryRegion]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipCountryRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders.Inputs[OLE DB Destination Input].ExternalColumns[CountOfOrders]"
+                      dataType="numeric"
+                      name="CountOfOrders"
+                      precision="20" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Table\Orders.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Orders XML into SQL Server Table\Orders.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Table\Orders XML File"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Extracts data from an XML file. For example, extract catalog data from an XML file that represents catalogs and catalog items. Before using, specify the schema and generate an output for each XML element.;Microsoft Corporation;Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Extracts data from an XML file. For example, extract catalog data from an XML file that represents catalogs and catalog items. Before using, specify the schema and generate an output for each XML element."
+              name="Orders XML File"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.XmlSourceAdapter</property>
+                <property
+                  dataType="System.String"
+                  description="The XML data used by the XML source adapter."
+                  expressionType="Notify"
+                  name="XMLData">K:\DW_Practis\orders.xml</property>
+                <property
+                  dataType="System.String"
+                  description="The variable used by the XML source adapter to specify XML data."
+                  name="XMLDataVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Defines how the XML source adapter gets XML data."
+                  name="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The XML schema definition used by the XML source adapter."
+                  expressionType="Notify"
+                  name="XMLSchemaDefinition">K:\DW_Practis\orders.xsd</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Identifies whether or not to use inline schema."
+                  name="UseInlineSchema">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Defines how XML integer types are mapped."
+                  name="XMLIntegerMapping"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.XmlSourceAdapter+XMLIntegerMappingConverter">0</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders]"
+                  name="orders">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Identifies the rowset associated with the output."
+                      name="RowsetID">orders</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[OrderID]"
+                      dataType="ui2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[OrderID]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[OrderID]"
+                      name="OrderID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[CustomerID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[CustomerID]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[EmployeeID]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[OrderDate]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[OrderDate]"
+                      name="OrderDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[RequiredDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[RequiredDate]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[RequiredDate]"
+                      name="RequiredDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShippedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShippedDate]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShippedDate]"
+                      name="ShippedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipVia]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipVia]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipVia]"
+                      name="ShipVia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[Freight]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[Freight]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[Freight]"
+                      name="Freight"
+                      scale="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipName]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipName]"
+                      name="ShipName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipAddress]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipAddress]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipAddress]"
+                      name="ShipAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipCity]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCity]"
+                      name="ShipCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipPostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipPostalCode]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipPostalCode]"
+                      name="ShipPostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipCountryRegion]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCountryRegion]"
+                      name="ShipCountryRegion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCountryRegionRegion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipCountryRegionRegion]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipCountryRegionRegion]"
+                      name="ShipCountryRegionRegion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipRegion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipRegion]"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].Columns[ShipRegion]"
+                      name="ShipRegion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[OrderID]"
+                      dataType="ui2"
+                      name="OrderID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.UInt16</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[CustomerID]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomerID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[EmployeeID]"
+                      dataType="ui1"
+                      name="EmployeeID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.Byte</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="OrderDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.DateTime</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[RequiredDate]"
+                      dataType="dbTimeStamp"
+                      name="RequiredDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.DateTime</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShippedDate]"
+                      dataType="dbTimeStamp"
+                      name="ShippedDate">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.DateTime</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipVia]"
+                      dataType="ui1"
+                      name="ShipVia">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.Byte</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[Freight]"
+                      dataType="decimal"
+                      name="Freight"
+                      scale="10">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.Decimal</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipName">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipAddress]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipAddress">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipCity]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipCity">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipPostalCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipPostalCode">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipCountryRegion]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipCountryRegion">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipCountryRegionRegion]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipCountryRegionRegion">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders].ExternalColumns[ShipRegion]"
+                      dataType="wstr"
+                      length="255"
+                      name="ShipRegion">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="CLRType">System.String</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output]"
+                  isErrorOut="true"
+                  name="orders Error Output">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Identifies the rowset associated with the output."
+                      name="RowsetID">orders</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[OrderID]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[OrderID]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[OrderID]"
+                      name="OrderID" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[CustomerID]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[EmployeeID]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[OrderDate]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[OrderDate]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[OrderDate]"
+                      name="OrderDate" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[RequiredDate]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[RequiredDate]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[RequiredDate]"
+                      name="RequiredDate" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShippedDate]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShippedDate]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShippedDate]"
+                      name="ShippedDate" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipVia]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipVia]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipVia]"
+                      name="ShipVia" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[Freight]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[Freight]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[Freight]"
+                      name="Freight" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipName]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipName]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipName]"
+                      name="ShipName" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipAddress]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipAddress]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipAddress]"
+                      name="ShipAddress" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipCity]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCity]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipCity]"
+                      name="ShipCity" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipPostalCode]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipPostalCode]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipPostalCode]"
+                      name="ShipPostalCode" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipCountryRegion]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCountryRegion]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipCountryRegion]"
+                      name="ShipCountryRegion" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipCountryRegionRegion]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCountryRegionRegion]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipCountryRegionRegion]"
+                      name="ShipCountryRegionRegion" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipRegion]"
+                      dataType="nText"
+                      externalMetadataColumnId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipRegion]"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ShipRegion]"
+                      name="ShipRegion" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[OrderID]"
+                      dataType="nText"
+                      name="OrderID" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[CustomerID]"
+                      dataType="nText"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[EmployeeID]"
+                      dataType="nText"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[OrderDate]"
+                      dataType="nText"
+                      name="OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[RequiredDate]"
+                      dataType="nText"
+                      name="RequiredDate" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShippedDate]"
+                      dataType="nText"
+                      name="ShippedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipVia]"
+                      dataType="nText"
+                      name="ShipVia" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[Freight]"
+                      dataType="nText"
+                      name="Freight" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipName]"
+                      dataType="nText"
+                      name="ShipName" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipAddress]"
+                      dataType="nText"
+                      name="ShipAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCity]"
+                      dataType="nText"
+                      name="ShipCity" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipPostalCode]"
+                      dataType="nText"
+                      name="ShipPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCountryRegion]"
+                      dataType="nText"
+                      name="ShipCountryRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipCountryRegionRegion]"
+                      dataType="nText"
+                      name="ShipCountryRegionRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders Error Output].ExternalColumns[ShipRegion]"
+                      dataType="nText"
+                      name="ShipRegion" />
+                  </externalMetadataColumns>
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Orders XML into SQL Server Table\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Orders XML into SQL Server Table\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Table\Sort.Inputs[Sort Input].Columns[ShipCountryRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ShipCountryRegion"
+                      lineageId="Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1].Columns[ShipCountryRegion]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Orders XML into SQL Server Table\Sort.Inputs[Sort Input].Columns[CountOfOrders]"
+                      cachedDataType="ui8"
+                      cachedName="CountOfOrders"
+                      lineageId="Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1].Columns[CountOfOrders]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Orders XML into SQL Server Table\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Sort.Outputs[Sort Output].Columns[ShipCountryRegion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Orders XML into SQL Server Table\Sort.Outputs[Sort Output].Columns[ShipCountryRegion]"
+                      name="ShipCountryRegion">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1].Columns[ShipCountryRegion]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Orders XML into SQL Server Table\Sort.Outputs[Sort Output].Columns[CountOfOrders]"
+                      dataType="ui8"
+                      lineageId="Package\Orders XML into SQL Server Table\Sort.Outputs[Sort Output].Columns[CountOfOrders]"
+                      name="CountOfOrders"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1].Columns[CountOfOrders]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Orders XML into SQL Server Table.Paths[Aggregate Output 1]"
+              endId="Package\Orders XML into SQL Server Table\Sort.Inputs[Sort Input]"
+              name="Aggregate Output 1"
+              startId="Package\Orders XML into SQL Server Table\Aggregate.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\Orders XML into SQL Server Table.Paths[orders]"
+              endId="Package\Orders XML into SQL Server Table\Conditional Split.Inputs[Conditional Split Input]"
+              name="orders"
+              startId="Package\Orders XML into SQL Server Table\Orders XML File.Outputs[orders]" />
+            <path
+              refId="Package\Orders XML into SQL Server Table.Paths[Sort Output]"
+              endId="Package\Orders XML into SQL Server Table\Orders.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\Orders XML into SQL Server Table\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Orders XML into SQL Server Table.Paths[WithShipCountryRegieon]"
+              endId="Package\Orders XML into SQL Server Table\Aggregate.Inputs[Aggregate Input 1]"
+              name="WithShipCountryRegieon"
+              startId="Package\Orders XML into SQL Server Table\Conditional Split.Outputs[WithShipCountryRegieon]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="245.333333333334,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Practis"
+          TopLeft="176.874997364357,203.449996362031" />
+        <NodeLayout
+          Size="240,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Table"
+          TopLeft="71.8749989289792,77.9999986052508" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Orders XML into SQL Server Practis">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Practis\Multicast"
+          TopLeft="188.124997196719,249.599995536804" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Practis\Conditional Split"
+          TopLeft="299.553569891889,145" />
+        <NodeLayout
+          Size="128,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Practis\Aggregate"
+          TopLeft="343.749994877725,412.449996129572" />
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Practis\Orders XML File"
+          TopLeft="378.267855606175,39" />
+        <NodeLayout
+          Size="130.666666666667,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Practis\Multicast 1"
+          TopLeft="375.416661072523,524.766657283107" />
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Practis\Add YearOfOrder Column"
+          TopLeft="86.2499987147749,326.083329207202" />
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Practis.Paths[WithshipCountryRegion]"
+          TopLeft="377.553569891889,187.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-128.761906028503,61.9333288701376"
+              Start="0,0"
+              End="-128.761906028503,54.4333288701376">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.9666644350688" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.9666644350688"
+                    Point2="0,30.9666644350688"
+                    Point3="-4,30.9666644350688" />
+                  <mssgle:LineSegment
+                    End="-124.761906028503,30.9666644350688" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-124.761906028503,30.9666644350688"
+                    Point2="-128.761906028503,30.9666644350688"
+                    Point3="-128.761906028503,34.9666644350688" />
+                  <mssgle:LineSegment
+                    End="-128.761906028503,54.4333288701376" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-116.458062389251,35.9666644350688,104.15421875,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Practis.Paths[orders]"
+          TopLeft="454.934522272842,81.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-77.3809523809525,63.3333333333333"
+              Start="0,0"
+              End="-77.3809523809525,55.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.6666666666667"
+                    Point2="0,31.6666666666667"
+                    Point3="-4,31.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-73.3809523809525,31.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-73.3809523809525,31.6666666666667"
+                    Point2="-77.3809523809525,31.6666666666667"
+                    Point3="-77.3809523809525,35.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-77.3809523809525,55.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Practis.Paths[Multicast Output 1]"
+          TopLeft="248.791663863386,292.266662203471">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63.2083318152774,33.8166670037309"
+              Start="0,0"
+              End="-63.2083318152774,26.3166670037309">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.9083335018655" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.9083335018655"
+                    Point2="0,16.9083335018655"
+                    Point3="-4,16.9083335018655" />
+                  <mssgle:LineSegment
+                    End="-59.2083318152774,16.9083335018655" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-59.2083318152774,16.9083335018655"
+                    Point2="-63.2083318152774,16.9083335018655"
+                    Point3="-63.2083318152774,20.9083335018655" />
+                  <mssgle:LineSegment
+                    End="-63.2083318152774,26.3166670037309" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Practis.Paths[Derived Column Output]"
+          TopLeft="185.583332048108,368.749995873869">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="222.166662829617,43.7000002557036"
+              Start="0,0"
+              End="222.166662829617,36.2000002557036">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8500001278518" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.8500001278518"
+                    Point2="0,21.8500001278518"
+                    Point3="4,21.8500001278518" />
+                  <mssgle:LineSegment
+                    End="218.166662829617,21.8500001278518" />
+                  <mssgle:CubicBezierSegment
+                    Point1="218.166662829617,21.8500001278518"
+                    Point2="222.166662829617,21.8500001278518"
+                    Point3="222.166662829617,25.8500001278518" />
+                  <mssgle:LineSegment
+                    End="222.166662829617,36.2000002557036" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Practis\Sort"
+          TopLeft="192.499997131526,467.799996606112" />
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Practis.Paths[Aggregate Output 1]"
+          TopLeft="343.749994877725,433.783329462906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-52.5833310795323,55.3500004765394"
+              Start="0,0"
+              End="-45.0833310795323,55.3500004765394">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-22.2916655397662,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.2916655397662,0"
+                    Point2="-26.2916655397662,0"
+                    Point3="-26.2916655397662,4" />
+                  <mssgle:LineSegment
+                    End="-26.2916655397662,51.3500004765394" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-26.2916655397662,51.3500004765394"
+                    Point2="-26.2916655397662,55.3500004765394"
+                    Point3="-30.2916655397662,55.3500004765394" />
+                  <mssgle:LineSegment
+                    End="-45.0833310795323,55.3500004765394" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Practis.Paths[Sort Output]"
+          TopLeft="291.166663798193,494.911107717223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="84.2499972743295,51.1888828992174"
+              Start="0,0"
+              End="76.7499972743295,51.1888828992174">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31.5271072843558,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31.5271072843558,0"
+                    Point2="35.5271072843558,0"
+                    Point3="35.5271072843558,4" />
+                  <mssgle:LineSegment
+                    End="35.5271072843558,47.1888828992174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.5271072843558,47.1888828992174"
+                    Point2="35.5271072843558,51.1888828992174"
+                    Point3="39.5271072843558,51.1888828992174" />
+                  <mssgle:LineSegment
+                    End="76.7499972743295,51.1888828992174" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="27.5271072843558,-22,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Orders XML into SQL Server Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="128,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Table\Aggregate"
+          TopLeft="175.624997382984,202.799996373654" />
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Table\Sort"
+          TopLeft="137.49999795109,312.649994409383" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Table\Conditional Split"
+          TopLeft="299.374995538965,110.499998024106" />
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Table\Orders XML File"
+          TopLeft="392.874998854473,24.2000003719329" />
+        <NodeLayout
+          Size="110.666666666667,42.6666666666667"
+          Id="Package\Orders XML into SQL Server Table\Orders"
+          TopLeft="76.2499988637865,408.849992689192" />
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Table.Paths[WithShipCountryRegieon]"
+          TopLeft="377.374995538965,153.166664690773">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-137.749998155981,49.6333316828808"
+              Start="0,0"
+              End="-137.749998155981,42.1333316828808">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.8166658414404" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.8166658414404"
+                    Point2="0,24.8166658414404"
+                    Point3="-4,24.8166658414404" />
+                  <mssgle:LineSegment
+                    End="-133.749998155981,24.8166658414404" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-133.749998155981,24.8166658414404"
+                    Point2="-137.749998155981,24.8166658414404"
+                    Point3="-137.749998155981,28.8166658414404" />
+                  <mssgle:LineSegment
+                    End="-137.749998155981,42.1333316828808" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-124.137108452991,29.8166658414404,110.52421875,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Table.Paths[Sort Output]"
+          TopLeft="186.833331284424,355.316661076049">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-55.249999087304,53.5333316131431"
+              Start="0,0"
+              End="-55.249999087304,46.0333316131431">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7666658065716" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.7666658065716"
+                    Point2="0,26.7666658065716"
+                    Point3="-4,26.7666658065716" />
+                  <mssgle:LineSegment
+                    End="-51.249999087304,26.7666658065716" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-51.249999087304,26.7666658065716"
+                    Point2="-55.249999087304,26.7666658065716"
+                    Point3="-55.249999087304,30.7666658065716" />
+                  <mssgle:LineSegment
+                    End="-55.249999087304,46.0333316131431" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Table.Paths[orders]"
+          TopLeft="469.54166552114,66.8666670385996">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-92.166669982175,43.6333309855065"
+              Start="0,0"
+              End="-92.166669982175,36.1333309855065">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8166654927532" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.8166654927532"
+                    Point2="0,21.8166654927532"
+                    Point3="-4,21.8166654927532" />
+                  <mssgle:LineSegment
+                    End="-88.166669982175,21.8166654927532" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-88.166669982175,21.8166654927532"
+                    Point2="-92.166669982175,21.8166654927532"
+                    Point3="-92.166669982175,25.8166654927532" />
+                  <mssgle:LineSegment
+                    End="-92.166669982175,36.1333309855065" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Orders XML into SQL Server Table.Paths[Aggregate Output 1]"
+          TopLeft="239.624997382984,245.46666304032">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-52.7916660985598,67.1833313690623"
+              Start="0,0"
+              End="-52.7916660985598,59.6833313690623">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5916656845312" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5916656845312"
+                    Point2="0,33.5916656845312"
+                    Point3="-4,33.5916656845312" />
+                  <mssgle:LineSegment
+                    End="-48.7916660985598,33.5916656845312" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-48.7916660985598,33.5916656845312"
+                    Point2="-52.7916660985598,33.5916656845312"
+                    Point3="-52.7916660985598,37.5916656845312" />
+                  <mssgle:LineSegment
+                    End="-52.7916660985598,59.6833313690623" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Orders XML into SQL Server Table\Orders">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
