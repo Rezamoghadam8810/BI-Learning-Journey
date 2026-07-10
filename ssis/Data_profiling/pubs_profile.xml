@@ -1,0 +1,263 @@
+<?xml version="1.0"?>
+<DataProfile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/sqlserver/2008/DataDebugger/">
+  <ProfileVersion>1.0</ProfileVersion>
+  <DataSources>
+    <DtsDataSource ID="{90D160C4-BD43-40CA-8E57-4AF0337F7227}" Name="pubs_profile.xml">
+      <DtsConnectionManagerID>pubs_profile.xml</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{860569E2-EAF2-4D90-8C11-28E435413405}" Name="pubs_profile_Publisher.xml">
+      <DtsConnectionManagerID>pubs_profile_Publisher.xml</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{EEE98D97-30B5-42FA-9D0D-923F25E80CF5}" Name="pubs_profile_titleauthor.xml">
+      <DtsConnectionManagerID>pubs_profile_titleauthor.xml</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{23EA4FE6-75CB-46AF-8A7D-E4351293129B}" Name="REZA.pubs">
+      <DtsConnectionManagerID>REZA.pubs</DtsConnectionManagerID>
+    </DtsDataSource>
+  </DataSources>
+  <DataProfileInput>
+    <ProfileMode>Exact</ProfileMode>
+    <Timeout>0</Timeout>
+    <Requests>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="authors" />
+        <Column IsWildCard="true" />
+      </ColumnNullRatioProfileRequest>
+      <CandidateKeyProfileRequest ID="KeyReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="authors" />
+        <KeyColumns>
+          <Column IsWildCard="false" ColumnName="au_id" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="authors" />
+        <Column IsWildCard="false" ColumnName="state" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="authors" />
+        <Column IsWildCard="false" ColumnName="phone" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq1">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="authors" />
+        <Column IsWildCard="false" ColumnName="zip" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq2">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="authors" />
+        <Column IsWildCard="false" ColumnName="au_id" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnPatternProfileRequest ID="PatternReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="authors" />
+        <Column IsWildCard="false" ColumnName="phone" />
+        <MaxNumberOfPatterns>10</MaxNumberOfPatterns>
+        <PercentageDataCoverageDesired>95</PercentageDataCoverageDesired>
+        <CaseSensitive>false</CaseSensitive>
+        <Delimiters> \t\r\n</Delimiters>
+        <Symbols>,.;:-"'`~=&amp;/\\@!?()&lt;&gt;[]{}|#*^%</Symbols>
+        <TagTableName />
+      </ColumnPatternProfileRequest>
+      <ColumnPatternProfileRequest ID="PatternReq1">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="authors" />
+        <Column IsWildCard="false" ColumnName="zip" />
+        <MaxNumberOfPatterns>10</MaxNumberOfPatterns>
+        <PercentageDataCoverageDesired>95</PercentageDataCoverageDesired>
+        <CaseSensitive>false</CaseSensitive>
+        <Delimiters> \t\r\n</Delimiters>
+        <Symbols>,.;:-"'`~=&amp;/\\@!?()&lt;&gt;[]{}|#*^%</Symbols>
+        <TagTableName />
+      </ColumnPatternProfileRequest>
+    </Requests>
+  </DataProfileInput>
+  <DataProfileOutput>
+    <Profiles>
+      <CandidateKeyProfile IsExact="true" ProfileRequestID="KeyReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="-1" />
+        <KeyColumns>
+          <Column Name="au_id" SqlDbType="VarChar" MaxLength="11" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        </KeyColumns>
+        <IsExactKey>true</IsExactKey>
+      </CandidateKeyProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="-1" />
+        <Column Name="au_id" SqlDbType="VarChar" MaxLength="11" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="-1" />
+        <Column Name="au_lname" SqlDbType="VarChar" MaxLength="40" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="-1" />
+        <Column Name="au_fname" SqlDbType="VarChar" MaxLength="20" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="-1" />
+        <Column Name="phone" SqlDbType="Char" MaxLength="12" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="-1" />
+        <Column Name="contract" SqlDbType="Bit" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="state" SqlDbType="Char" MaxLength="2" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>8</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>CA</Value>
+            <Count>15</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>IN</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>KS</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>MD</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>MI</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>OR</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>TN</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>UT</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnLengthDistributionProfile ProfileRequestID="LengthDistReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="phone" SqlDbType="Char" MaxLength="12" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+        <MinLength>12</MinLength>
+        <MaxLength>12</MaxLength>
+        <LengthDistribution>
+          <LengthDistributionItem>
+            <Length>12</Length>
+            <Count>23</Count>
+          </LengthDistributionItem>
+        </LengthDistribution>
+      </ColumnLengthDistributionProfile>
+      <ColumnLengthDistributionProfile ProfileRequestID="LengthDistReq1" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="zip" SqlDbType="Char" MaxLength="5" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+        <MinLength>5</MinLength>
+        <MaxLength>5</MaxLength>
+        <LengthDistribution>
+          <LengthDistributionItem>
+            <Length>5</Length>
+            <Count>23</Count>
+          </LengthDistributionItem>
+        </LengthDistribution>
+      </ColumnLengthDistributionProfile>
+      <ColumnLengthDistributionProfile ProfileRequestID="LengthDistReq2" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="au_id" SqlDbType="VarChar" MaxLength="11" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+        <MinLength>11</MinLength>
+        <MaxLength>11</MaxLength>
+        <LengthDistribution>
+          <LengthDistributionItem>
+            <Length>11</Length>
+            <Count>23</Count>
+          </LengthDistributionItem>
+        </LengthDistribution>
+      </ColumnLengthDistributionProfile>
+      <ColumnPatternProfile ProfileRequestID="PatternReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="phone" SqlDbType="Char" MaxLength="12" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <TopRegexPatterns>
+          <PatternDistributionItem>
+            <RegexText>\d\d\d \d\d\d-\d\d\d\d</RegexText>
+            <Frequency>100</Frequency>
+          </PatternDistributionItem>
+        </TopRegexPatterns>
+      </ColumnPatternProfile>
+      <ColumnPatternProfile ProfileRequestID="PatternReq1" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="zip" SqlDbType="Char" MaxLength="5" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <TopRegexPatterns>
+          <PatternDistributionItem>
+            <RegexText>\d\d\d\d\d</RegexText>
+            <Frequency>100</Frequency>
+          </PatternDistributionItem>
+        </TopRegexPatterns>
+      </ColumnPatternProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="address" SqlDbType="VarChar" MaxLength="40" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="city" SqlDbType="VarChar" MaxLength="20" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="state" SqlDbType="Char" MaxLength="2" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="authors" RowCount="23" />
+        <Column Name="zip" SqlDbType="Char" MaxLength="5" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+    </Profiles>
+  </DataProfileOutput>
+</DataProfile>

@@ -1,0 +1,1596 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/10/2026 1:24:58 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="REZA"
+  DTS:CreatorName="REZA\Reza"
+  DTS:DTSID="{1BFFA6CA-1F17-43D7-9D93-B3FA3B6C13C5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{0B4CFF0D-EA27-425B-B65F-D0BF0F28719D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[REZA.pubs]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0D906BB0-AA25-49EC-B2B6-7FE9E7985224}"
+      DTS:ObjectName="REZA.pubs">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=REZA;Initial Catalog=pubs;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{0D906BB0-AA25-49EC-B2B6-7FE9E7985224}REZA.pubs;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[REZA.pubs_DW_BI_1405_01]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A151FACC-195B-4B9E-A040-2C81A2C337FC}"
+      DTS:ObjectName="REZA.pubs_DW_BI_1405_01">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=REZA;Initial Catalog=pubs_DW_BI_1405_01;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{A151FACC-195B-4B9E-A040-2C81A2C337FC}REZA.pubs_DW_BI_1405_01;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[REZA.pubs_Staging_BI_1405_01]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B276A9EB-FF81-41FC-9D61-A97AA44DB005}"
+      DTS:ObjectName="REZA.pubs_Staging_BI_1405_01">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=REZA;Initial Catalog=pubs_Staging_BI_1405_01;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{B276A9EB-FF81-41FC-9D61-A97AA44DB005}REZA.pubs_Staging_BI_1405_01;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Op_To_Staging_roysched"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3D902D8F-0C90-402B-8C57-972B28374E26}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Op_To_Staging_roysched"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Read_Pubs_roysched_Op"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[roysched]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[REZA.pubs]"
+                  connectionManagerRefId="Package.ConnectionManagers[REZA.pubs]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].ExternalColumns[title_id]"
+                      length="6"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[title_id]"
+                      name="title_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[lorange]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].ExternalColumns[lorange]"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[lorange]"
+                      name="lorange"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[hirange]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].ExternalColumns[hirange]"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[hirange]"
+                      name="hirange"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[royalty]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].ExternalColumns[royalty]"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[royalty]"
+                      name="royalty"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].ExternalColumns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="title_id" />
+                    <externalMetadataColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].ExternalColumns[lorange]"
+                      dataType="i4"
+                      name="lorange" />
+                    <externalMetadataColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].ExternalColumns[hirange]"
+                      dataType="i4"
+                      name="hirange" />
+                    <externalMetadataColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].ExternalColumns[royalty]"
+                      dataType="i4"
+                      name="royalty" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[title_id]"
+                      name="title_id" />
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[lorange]"
+                      dataType="i4"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[lorange]"
+                      name="lorange" />
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[hirange]"
+                      dataType="i4"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[hirange]"
+                      name="hirange" />
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[royalty]"
+                      dataType="i4"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[royalty]"
+                      name="royalty" />
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Staging_Ref_roysched"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Staging_Ref_roysched]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[REZA.pubs_Staging_BI_1405_01]"
+                  connectionManagerRefId="Package.ConnectionManagers[REZA.pubs_Staging_BI_1405_01]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="title_id"
+                      externalMetadataColumnId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].ExternalColumns[title_id]"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[title_id]" />
+                    <inputColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].Columns[lorange]"
+                      cachedDataType="i4"
+                      cachedName="lorange"
+                      externalMetadataColumnId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].ExternalColumns[lorange]"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[lorange]" />
+                    <inputColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].Columns[hirange]"
+                      cachedDataType="i4"
+                      cachedName="hirange"
+                      externalMetadataColumnId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].ExternalColumns[hirange]"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[hirange]" />
+                    <inputColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].Columns[royalty]"
+                      cachedDataType="i4"
+                      cachedName="royalty"
+                      externalMetadataColumnId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].ExternalColumns[royalty]"
+                      lineageId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output].Columns[royalty]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].ExternalColumns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="title_id" />
+                    <externalMetadataColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].ExternalColumns[lorange]"
+                      dataType="i4"
+                      name="lorange" />
+                    <externalMetadataColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].ExternalColumns[hirange]"
+                      dataType="i4"
+                      name="hirange" />
+                    <externalMetadataColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input].ExternalColumns[royalty]"
+                      dataType="i4"
+                      name="royalty" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Op_To_Staging_roysched.Paths[OLE DB Source Output]"
+              endId="Package\Op_To_Staging_roysched\Staging_Ref_roysched.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Staging_To_DW"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D08BA599-FCFA-4234-B5F6-E0EE9E5F0ECC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Staging_To_DW"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Staging_To_DW\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Staging_To_DW\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Conditional Split.Inputs[Conditional Split Input].Columns[royalty]"
+                      cachedDataType="i4"
+                      cachedName="royalty"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[royalty]" />
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Conditional Split.Inputs[Conditional Split Input].Columns[royalty1]"
+                      cachedDataType="i4"
+                      cachedName="royalty"
+                      lineageId="Package\Staging_To_DW\Lookup.Outputs[Lookup Match Output].Columns[royalty]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Staging_To_DW\Conditional Split.Outputs[update Path]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="update Path"
+                  synchronousInputId="Package\Staging_To_DW\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[royalty]} != #{Package\Staging_To_DW\Lookup.Outputs[Lookup Match Output].Columns[royalty]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">Read_From_Staging_Ref_roysched.royalty != Lookup.royalty</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Staging_To_DW\Conditional Split.Outputs[No Action]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="No Action"
+                  synchronousInputId="Package\Staging_To_DW\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Staging_To_DW\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Staging_To_DW\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Staging_To_DW\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Ref_roysched]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Ref_roysched]) [refTable]
+where [refTable].[title_Alt_id] = ? and [refTable].[lorange] = ? and [refTable].[hirange] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="royschedKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="title_Alt_id" dataType="DT_STR" length="6" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="lorange" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="hirange" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="royalty" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[title_id]};#{Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[lorange]};#{Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[hirange]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Staging_To_DW\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[REZA.pubs_DW_BI_1405_01]"
+                  connectionManagerRefId="Package.ConnectionManagers[REZA.pubs_DW_BI_1405_01]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Staging_To_DW\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Lookup.Inputs[Lookup Input].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="title_id"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[title_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">title_Alt_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Lookup.Inputs[Lookup Input].Columns[lorange]"
+                      cachedDataType="i4"
+                      cachedName="lorange"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[lorange]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">lorange</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Lookup.Inputs[Lookup Input].Columns[hirange]"
+                      cachedDataType="i4"
+                      cachedName="hirange"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[hirange]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">hirange</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Staging_To_DW\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Staging_To_DW\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Lookup.Outputs[Lookup Match Output].Columns[royschedKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Staging_To_DW\Lookup.Outputs[Lookup Match Output].Columns[royschedKey]"
+                      name="royschedKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">royschedKey</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Lookup.Outputs[Lookup Match Output].Columns[royalty]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Staging_To_DW\Lookup.Outputs[Lookup Match Output].Columns[royalty]"
+                      name="royalty"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">royalty</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Staging_To_DW\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Staging_To_DW\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Staging_To_DW\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Staging_To_DW\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Read_From_Staging_Ref_roysched"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Staging_Ref_roysched]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[REZA.pubs_Staging_BI_1405_01]"
+                  connectionManagerRefId="Package.ConnectionManagers[REZA.pubs_Staging_BI_1405_01]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].ExternalColumns[title_id]"
+                      length="6"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[title_id]"
+                      name="title_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[lorange]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].ExternalColumns[lorange]"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[lorange]"
+                      name="lorange"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[hirange]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].ExternalColumns[hirange]"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[hirange]"
+                      name="hirange"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[royalty]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].ExternalColumns[royalty]"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[royalty]"
+                      name="royalty"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].ExternalColumns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="title_id" />
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].ExternalColumns[lorange]"
+                      dataType="i4"
+                      name="lorange" />
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].ExternalColumns[hirange]"
+                      dataType="i4"
+                      name="hirange" />
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].ExternalColumns[royalty]"
+                      dataType="i4"
+                      name="royalty" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[title_id]"
+                      name="title_id" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[lorange]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[lorange]"
+                      name="lorange" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[hirange]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[hirange]"
+                      name="hirange" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[royalty]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[royalty]"
+                      name="royalty" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Staging_To_DW\Staging_To_DW"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Staging_To_DW"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Ref_roysched]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Staging_To_DW\Staging_To_DW.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[REZA.pubs_DW_BI_1405_01]"
+                  connectionManagerRefId="Package.ConnectionManagers[REZA.pubs_DW_BI_1405_01]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].Columns[lorange]"
+                      cachedDataType="i4"
+                      cachedName="lorange"
+                      externalMetadataColumnId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].ExternalColumns[lorange]"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[lorange]" />
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].Columns[hirange]"
+                      cachedDataType="i4"
+                      cachedName="hirange"
+                      externalMetadataColumnId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].ExternalColumns[hirange]"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[hirange]" />
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].Columns[royalty]"
+                      cachedDataType="i4"
+                      cachedName="royalty"
+                      externalMetadataColumnId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].ExternalColumns[royalty]"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[royalty]" />
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="title_id"
+                      externalMetadataColumnId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].ExternalColumns[title_Alt_id]"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[title_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].ExternalColumns[royschedKey]"
+                      dataType="i4"
+                      name="royschedKey" />
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].ExternalColumns[title_Alt_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="title_Alt_id" />
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].ExternalColumns[lorange]"
+                      dataType="i4"
+                      name="lorange" />
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].ExternalColumns[hirange]"
+                      dataType="i4"
+                      name="hirange" />
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input].ExternalColumns[royalty]"
+                      dataType="i4"
+                      name="royalty" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Staging_To_DW\Staging_To_DW.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Staging_To_DW.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Staging_To_DW.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Staging_To_DW.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Staging_To_DW\Update"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">	update [dbo].[Ref_roysched]
+	set royalty =?,
+		DWUpdateDate = SYSDATETIME()
+	where title_Alt_id =?;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Staging_To_DW\Update.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[REZA.pubs_DW_BI_1405_01]"
+                  connectionManagerRefId="Package.ConnectionManagers[REZA.pubs_DW_BI_1405_01]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input].Columns[royalty]"
+                      cachedDataType="i4"
+                      cachedName="royalty"
+                      externalMetadataColumnId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output].Columns[royalty]" />
+                    <inputColumn
+                      refId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input].Columns[royalty1]"
+                      cachedDataType="i4"
+                      cachedName="royalty"
+                      externalMetadataColumnId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Staging_To_DW\Lookup.Outputs[Lookup Match Output].Columns[royalty]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Staging_To_DW\Update.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Staging_To_DW\Update.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Update.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Update.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Staging_To_DW\Update.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Staging_To_DW\Update.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Staging_To_DW.Paths[Lookup Match Output]"
+              endId="Package\Staging_To_DW\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\Staging_To_DW\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Staging_To_DW.Paths[Lookup No Match Output]"
+              endId="Package\Staging_To_DW\Staging_To_DW.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Staging_To_DW\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Staging_To_DW.Paths[OLE DB Source Output]"
+              endId="Package\Staging_To_DW\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Staging_To_DW\Read_From_Staging_Ref_roysched.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Staging_To_DW.Paths[update Path]"
+              endId="Package\Staging_To_DW\Update.Inputs[OLE DB Command Input]"
+              name="update Path"
+              startId="Package\Staging_To_DW\Conditional Split.Outputs[update Path]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate_Staging_Ref_roysched"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{85610218-D89A-4923-AE84-2409AE2E8574}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate_Staging_Ref_roysched"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B276A9EB-FF81-41FC-9D61-A97AA44DB005}"
+          SQLTask:SqlStatementSource="truncate table Staging_Ref_roysched" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{BCE918ED-A366-4207-97E2-E07D43CD6E22}"
+      DTS:From="Package\truncate_Staging_Ref_roysched"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Op_To_Staging_roysched" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DD2F0E5D-2AA7-4B7F-AE56-74C2EC319FE9}"
+      DTS:From="Package\Op_To_Staging_roysched"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Staging_To_DW" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200,42.6666666666667"
+          Id="Package\Op_To_Staging_roysched"
+          TopLeft="226.249996628612,126.749997733533" />
+        <NodeLayout
+          Size="229.333333333334,42.6666666666667"
+          Id="Package\truncate_Staging_Ref_roysched"
+          TopLeft="309.99999538064,48.7499991282821" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="424.666662047307,91.4166657949488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-98.4166654186944,35.3333319385847"
+              Start="0,0"
+              End="-98.4166654186944,27.8333319385847">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.6666659692923" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.6666659692923"
+                    Point2="0,17.6666659692923"
+                    Point3="-4,17.6666659692923" />
+                  <mssgle:LineSegment
+                    End="-94.4166654186944,17.6666659692923" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-94.4166654186944,17.6666659692923"
+                    Point2="-98.4166654186944,17.6666659692923"
+                    Point3="-98.4166654186944,21.6666659692923" />
+                  <mssgle:LineSegment
+                    End="-98.4166654186944,27.8333319385847" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Staging_To_DW"
+          TopLeft="331.24999506399,228.799995908737" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="326.249996628612,169.4166644002">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82.9999984353781,59.3833315085371"
+              Start="0,0"
+              End="82.9999984353781,51.8833315085371">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6916657542685" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.6916657542685"
+                    Point2="0,29.6916657542685"
+                    Point3="4,29.6916657542685" />
+                  <mssgle:LineSegment
+                    End="78.9999984353781,29.6916657542685" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.9999984353781,29.6916657542685"
+                    Point2="82.9999984353781,29.6916657542685"
+                    Point3="82.9999984353781,33.6916657542685" />
+                  <mssgle:LineSegment
+                    End="82.9999984353781,51.8833315085371" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Op_To_Staging_roysched">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op"
+          TopLeft="321.874995203689,72.1499987098575" />
+        <NodeLayout
+          Size="184,42.6666666666667"
+          Id="Package\Op_To_Staging_roysched\Staging_Ref_roysched"
+          TopLeft="303.749995473773,204.099996350408" />
+        <EdgeLayout
+          Id="Package\Op_To_Staging_roysched.Paths[OLE DB Source Output]"
+          TopLeft="421.208328537022,114.816665376524">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25.4583330632496,89.2833309738834"
+              Start="0,0"
+              End="-25.4583330632496,81.7833309738834">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.6416654869417" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.6416654869417"
+                    Point2="0,44.6416654869417"
+                    Point3="-4,44.6416654869417" />
+                  <mssgle:LineSegment
+                    End="-21.4583330632496,44.6416654869417" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.4583330632496,44.6416654869417"
+                    Point2="-25.4583330632496,44.6416654869417"
+                    Point3="-25.4583330632496,48.6416654869417" />
+                  <mssgle:LineSegment
+                    End="-25.4583330632496,81.7833309738834" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Op_To_Staging_roysched\Read_Pubs_roysched_Op">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Op_To_Staging_roysched\Staging_Ref_roysched">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Staging_To_DW">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="244,42.6666666666667"
+          Id="Package\Staging_To_DW\Read_From_Staging_Ref_roysched"
+          TopLeft="553,142" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Staging_To_DW\Staging_To_DW"
+          TopLeft="191,407" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Staging_To_DW\Lookup"
+          TopLeft="369,248" />
+        <EdgeLayout
+          Id="Package\Staging_To_DW.Paths[OLE DB Source Output]"
+          TopLeft="675,184.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-249.333333333333,63.3333333333333"
+              Start="0,0"
+              End="-249.333333333333,55.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.6666666666667"
+                    Point2="0,31.6666666666667"
+                    Point3="-4,31.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-245.333333333333,31.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-245.333333333333,31.6666666666667"
+                    Point2="-249.333333333333,31.6666666666667"
+                    Point3="-249.333333333333,35.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-249.333333333333,55.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Staging_To_DW\Conditional Split"
+          TopLeft="600,334" />
+        <EdgeLayout
+          Id="Package\Staging_To_DW.Paths[Lookup Match Output]"
+          TopLeft="443.222222222222,290.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="234.777777777778,43.3333333333333"
+              Start="0,0"
+              End="234.777777777778,35.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.6952822892498" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.6952822892498"
+                    Point2="0,17.6952822892498"
+                    Point3="4,17.6952822892498" />
+                  <mssgle:LineSegment
+                    End="230.777777777778,17.6952822892498" />
+                  <mssgle:CubicBezierSegment
+                    Point1="230.777777777778,17.6952822892498"
+                    Point2="234.777777777778,17.6952822892498"
+                    Point3="234.777777777778,21.6952822892498" />
+                  <mssgle:LineSegment
+                    End="234.777777777778,35.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="69.1975021701389,22.6952822892498,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Staging_To_DW.Paths[Lookup No Match Output]"
+          TopLeft="408.111111111111,290.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-139.111111111111,116.333333333333"
+              Start="0,0"
+              End="-139.111111111111,108.833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5050270688321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.5050270688321"
+                    Point2="0,47.5050270688321"
+                    Point3="-4,47.5050270688321" />
+                  <mssgle:LineSegment
+                    End="-135.111111111111,47.5050270688321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-135.111111111111,47.5050270688321"
+                    Point2="-139.111111111111,47.5050270688321"
+                    Point3="-139.111111111111,51.5050270688321" />
+                  <mssgle:LineSegment
+                    End="-139.111111111111,108.833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-125.361942274305,52.5050270688321,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Staging_To_DW\Update"
+          TopLeft="694,451" />
+        <EdgeLayout
+          Id="Package\Staging_To_DW.Paths[update Path]"
+          TopLeft="678,376.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.6666666666666,74.3333333333333"
+              Start="0,0"
+              End="72.6666666666666,66.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.1666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.1666666666667"
+                    Point2="0,37.1666666666667"
+                    Point3="4,37.1666666666667" />
+                  <mssgle:LineSegment
+                    End="68.6666666666666,37.1666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="68.6666666666666,37.1666666666667"
+                    Point2="72.6666666666666,37.1666666666667"
+                    Point3="72.6666666666666,41.1666666666667" />
+                  <mssgle:LineSegment
+                    End="72.6666666666666,66.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="9.31024739583331,42.1666666666667,54.046171875,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Staging_To_DW\Read_From_Staging_Ref_roysched">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Staging_To_DW\Staging_To_DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Staging_To_DW\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Ref_roysched]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

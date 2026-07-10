@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<DataProfile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/sqlserver/2008/DataDebugger/">
+  <ProfileVersion>1.0</ProfileVersion>
+  <DataSources>
+    <DtsDataSource ID="{90D160C4-BD43-40CA-8E57-4AF0337F7227}" Name="pubs_profile.xml">
+      <DtsConnectionManagerID>pubs_profile.xml</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{860569E2-EAF2-4D90-8C11-28E435413405}" Name="pubs_profile_Publisher.xml">
+      <DtsConnectionManagerID>pubs_profile_Publisher.xml</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{EEE98D97-30B5-42FA-9D0D-923F25E80CF5}" Name="pubs_profile_titleauthor.xml">
+      <DtsConnectionManagerID>pubs_profile_titleauthor.xml</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{23EA4FE6-75CB-46AF-8A7D-E4351293129B}" Name="REZA.pubs">
+      <DtsConnectionManagerID>REZA.pubs</DtsConnectionManagerID>
+    </DtsDataSource>
+  </DataSources>
+  <DataProfileInput>
+    <ProfileMode>Exact</ProfileMode>
+    <Timeout>0</Timeout>
+    <Requests>
+      <CandidateKeyProfileRequest ID="KeyReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="titleauthor" />
+        <KeyColumns>
+          <Column IsWildCard="false" ColumnName="au_id" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="titleauthor" />
+        <Column IsWildCard="true" />
+      </ColumnNullRatioProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="titleauthor" />
+        <Column IsWildCard="false" ColumnName="au_ord" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+      <ColumnStatisticsProfileRequest ID="StatisticsReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table Schema="dbo" Table="titleauthor" />
+        <Column IsWildCard="false" ColumnName="royaltyper" />
+      </ColumnStatisticsProfileRequest>
+    </Requests>
+  </DataProfileInput>
+  <DataProfileOutput>
+    <Profiles>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="titleauthor" RowCount="-1" />
+        <Column Name="au_id" SqlDbType="VarChar" MaxLength="11" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="titleauthor" RowCount="-1" />
+        <Column Name="title_id" SqlDbType="VarChar" MaxLength="6" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="false" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="titleauthor" RowCount="25" />
+        <Column Name="au_ord" SqlDbType="TinyInt" MaxLength="0" Precision="3" Scale="0" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>3</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>1</Value>
+            <Count>17</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2</Value>
+            <Count>7</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>3</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnStatisticsProfile IsExact="true" ProfileRequestID="StatisticsReq">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="titleauthor" RowCount="25" />
+        <Column Name="royaltyper" SqlDbType="Int" MaxLength="0" Precision="10" Scale="0" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <MinValue>25</MinValue>
+        <MaxValue>100</MaxValue>
+        <Mean>68</Mean>
+        <StdDev>28.7749891398763</StdDev>
+      </ColumnStatisticsProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="titleauthor" RowCount="25" />
+        <Column Name="au_ord" SqlDbType="TinyInt" MaxLength="0" Precision="3" Scale="0" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{23EA4FE6-75CB-46AF-8A7D-E4351293129B}</DataSourceID>
+        <Table DataSource="REZA" Database="pubs" Schema="dbo" Table="titleauthor" RowCount="25" />
+        <Column Name="royaltyper" SqlDbType="Int" MaxLength="0" Precision="10" Scale="0" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+    </Profiles>
+  </DataProfileOutput>
+</DataProfile>
